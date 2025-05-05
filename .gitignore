@@ -1,6 +1,6 @@
 ### CUSTOM ###
 application-local.yml
-
+TestApiKey.java
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar

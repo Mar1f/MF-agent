@@ -3,11 +3,11 @@ spring:
     name: MF-agent
   profiles:
     active: local
-  ai:
-    ollama:
-      base-url: http://localhost:11434
-      chat:
-        model: qwen2.5:latest
+#  ai:
+#    ollama:
+#      base-url: http://localhost:11434
+#      chat:
+#        model: qwen2.5:latest
 #        qwen:7b
 
 server:
@@ -31,5 +31,8 @@ knife4j:
   enable: true
   setting:
     language: zh_cn
+#logging:
+#  level:
+#    org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor: debug
 
 

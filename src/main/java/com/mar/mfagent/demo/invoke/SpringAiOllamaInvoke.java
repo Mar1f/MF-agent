@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @data:2025/04/25
  **/
 
-@Component
+//@Component
 public class SpringAiOllamaInvoke implements CommandLineRunner {
 
     @Resource
