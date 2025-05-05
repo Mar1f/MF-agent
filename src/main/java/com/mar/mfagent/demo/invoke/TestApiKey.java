@@ -1,5 +1,4 @@
 package com.mar.mfagent.demo.invoke;
-
 /**
  * @description；
  * @author:mar1
@@ -7,7 +6,7 @@ package com.mar.mfagent.demo.invoke;
  **/
 public interface TestApiKey {
 
-    String API_KEY = "你的 API Key";
+    String API_KEY = "${spring.ai.dashscope.api-key}";
 }
 
 
