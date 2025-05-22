@@ -9,6 +9,17 @@ spring:
 #      chat:
 #        model: qwen2.5:latest
 #        qwen:7b
+  datasource:
+    url: jdbc:postgresql://rm-cn-wuf49d289000poxo.rwlb.rds.aliyuncs.com:5432/m_ai_agent
+    username: ${spring.ai.datasource.username}
+    password: ${spring.ai.datasource.password}
+  ai:
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        dimensions: 1536
+        distance-type: COSINE_DISTANCE
+        max-document-batch-size: 10000 # Optional: Maximum number of documents per batch
 
 server:
   port: 8123
