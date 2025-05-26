@@ -9,18 +9,19 @@ spring:
 #      chat:
 #        model: qwen2.5:latest
 #        qwen:7b
-  datasource:
-    url: jdbc:postgresql://rm-cn-wuf49d289000poxo.rwlb.rds.aliyuncs.com:5432/m_ai_agent
-    username: ${spring.ai.datasource.username}
-    password: ${spring.ai.datasource.password}
-  ai:
-    vectorstore:
-      pgvector:
-        index-type: HNSW
-        dimensions: 1536
-        distance-type: COSINE_DISTANCE
-        max-document-batch-size: 10000 # Optional: Maximum number of documents per batch
-
+#  datasource:
+#    url: jdbc:postgresql://rm-cn-wuf49d289000poxo.rwlb.rds.aliyuncs.com:5432/m_ai_agent
+#    username: ${spring.ai.datasource.username}
+#    password: ${spring.ai.datasource.password}
+#  ai:
+#    vectorstore:
+#      pgvector:
+#        index-type: HNSW
+#        dimensions: 1536
+#        distance-type: COSINE_DISTANCE
+#        max-document-batch-size: 10000 # Optional: Maximum number of documents per batch
+#    anthropic:
+#      api-key:
 server:
   port: 8123
   servlet:
@@ -45,5 +46,6 @@ knife4j:
 #logging:
 #  level:
 #    org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor: debug
-
-
+#SearchAPI
+search-api:
+  api-key: ${search-api.api-key}
