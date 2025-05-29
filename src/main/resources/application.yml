@@ -22,6 +22,17 @@ spring:
 #        max-document-batch-size: 10000 # Optional: Maximum number of documents per batch
 #    anthropic:
 #      api-key:
+  ai:
+    dashscope:
+      api-key: ${spring.ai.dashscope.api-key}
+      chat:
+        options:
+          model: qwen-plus
+    mcp:
+      client:
+        stdio:
+          servers-configuration: classpath:mcp-servers.json
+          initialization-timeout: 60000  # Increase timeout to 60 seconds
 server:
   port: 8123
   servlet:
@@ -49,3 +60,8 @@ knife4j:
 #SearchAPI
 search-api:
   api-key: ${search-api.api-key}
+# 修改日志级别： 查看springAI 的调用细节
+logging:
+  level:
+    org.springframework.ai: DEBUG
+    io.modelcontextprotocol: DEBUG

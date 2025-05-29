@@ -1,8 +1,10 @@
 ### CUSTOM ###
 application-local.yml
+mcp-servers.json
 TestApiKey.java
 TestApiKey
 HELP.md
+tmp
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
