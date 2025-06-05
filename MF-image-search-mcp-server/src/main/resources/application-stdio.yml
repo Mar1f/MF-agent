@@ -1,0 +1,15 @@
+spring:
+  ai:
+    mcp:
+      server:
+        name: MF-image-search-mcp-server
+        version: 0.0.1
+        type: SYNC
+        # stdio
+        stdio: true
+  # stdio
+  main:
+    web-application-type: none
+    banner-mode: off
+image-search-api:
+  api-key: cjJDLVC2t26tQooLdm5mSiKR3P5Imyk2qJM52OeCZcp7GK9WrK1Rr9f6
