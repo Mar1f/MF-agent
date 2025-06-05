@@ -1,6 +1,7 @@
 package com.mar.mfagent.controller;
 
 import com.itextpdf.io.exceptions.IOException;
+import com.mar.mfagent.agent.MfManus;
 import com.mar.mfagent.app.LoveApp;
 import jakarta.annotation.Resource;
 import org.springframework.ai.chat.model.ChatModel;
@@ -68,5 +69,16 @@ public class AiController {
         return emitter;
     }
 
+    /**
+     * 流式调用 Manus 超级智能体
+     *
+     * @param message
+     * @return
+     */
+    @GetMapping("/manus/chat")
+    public SseEmitter doChatWithManus(String message) {
+        MfManus mfManus = new MfManus(allTools, dashscopeChatModel);
+        return mfManus.runStream(message);
+    }
 
 }
