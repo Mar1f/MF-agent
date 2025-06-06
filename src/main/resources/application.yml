@@ -27,7 +27,9 @@ spring:
       api-key: ${spring.ai.dashscope.api-key}
       chat:
         options:
-          model: qwen-plus
+          model: qwen-plus-latest
+#          model: qwen-plus
+
     mcp:
       client:
         stdio:
