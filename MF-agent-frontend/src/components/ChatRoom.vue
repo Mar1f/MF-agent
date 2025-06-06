@@ -1,5 +1,5 @@
 <template>
-  <div class="chat-container">
+  <div class="chat-container" :class="`theme-${aiType}`">
     <!-- 聊天记录区域 -->
     <div class="chat-messages" ref="messagesContainer">
       <div v-for="(msg, index) in messages" :key="index" class="message-wrapper">
@@ -33,7 +33,7 @@
       
       <!-- 空状态提示 -->
       <div v-if="messages.length === 0" class="empty-state">
-        <div class="empty-icon">💕</div>
+        <div class="empty-icon">{{ aiType === 'love' ? '💕' : '🤖' }}</div>
         <div class="empty-text">暂无消息，开始聊天吧！</div>
       </div>
     </div>
@@ -45,7 +45,7 @@
           <textarea 
             v-model="inputMessage" 
             @keydown.enter.prevent="sendMessage"
-            :placeholder="aiType === 'love' ? '给AI恋爱大师 发送消息' : '给AI超级智能体 发送消息'" 
+            :placeholder="aiType === 'love' ? '向恋爱大师说出你的困扰' : '给超级智能体说出你的需求'"
             class="input-box"
             :disabled="connectionStatus === 'connecting'"
           ></textarea>
@@ -59,6 +59,9 @@
             </svg>
           </button>
         </div>
+      </div>
+      <div class="disclaimer-text">
+        内容由 AI 生成，请仔细甄别
       </div>
     </div>
   </div>
@@ -132,30 +135,155 @@ onMounted(() => {
 </script>
 
 <style scoped>
+/* 基础样式 */
 .chat-container {
   display: flex;
   flex-direction: column;
   height: 70vh;
   min-height: 600px;
-  background: linear-gradient(135deg, #ffeef8 0%, #f8e8f0 50%, #f0d8e8 100%);
   border-radius: 16px;
   overflow: hidden;
   position: relative;
+}
+
+/* 恋爱大师主题 - 粉色系 */
+.theme-love {
+  background: linear-gradient(135deg, #ffeef8 0%, #f8e8f0 50%, #f0d8e8 100%);
   box-shadow: 0 8px 32px rgba(255, 182, 193, 0.3);
+}
+
+.theme-love .chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(255, 105, 180, 0.3);
+}
+
+.theme-love .chat-messages::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 105, 180, 0.5);
+}
+
+.theme-love .avatar-placeholder {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+}
+
+.theme-love .user-message .message-bubble {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: white;
+  border-bottom-right-radius: 8px;
+}
+
+.theme-love .ai-message .message-bubble {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 182, 193, 0.2);
+}
+
+.theme-love .chat-input-container {
+  background: linear-gradient(135deg, #ffeef8 0%, #f8e8f0 50%, #f0d8e8 100%);
+  border-top: 1px solid rgba(255, 182, 193, 0.2);
+  box-shadow: 0 -4px 20px rgba(255, 182, 193, 0.1);
+}
+
+.theme-love .input-wrapper {
+  border: 2px solid rgba(255, 182, 193, 0.3);
+  box-shadow: 0 4px 16px rgba(255, 182, 193, 0.2);
+}
+
+.theme-love .input-wrapper:focus-within {
+  border-color: #ff69b4;
+  box-shadow: 0 4px 20px rgba(255, 105, 180, 0.3);
+}
+
+.theme-love .send-button {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.3);
+}
+
+.theme-love .send-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #ff1493, #dc143c);
+  box-shadow: 0 6px 16px rgba(255, 105, 180, 0.4);
+}
+
+.theme-love .typing-indicator {
+  color: #ff69b4;
+}
+
+.theme-love .empty-text {
+  color: rgba(255, 105, 180, 0.8);
+}
+
+/* 超级智能体主题 - 蓝色系 */
+.theme-super {
+  background: linear-gradient(135deg, #e3f2fd 0%, #e8eaf6 50%, #e0e7ff 100%);
+  box-shadow: 0 8px 32px rgba(63, 81, 181, 0.3);
+}
+
+.theme-super .chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(63, 81, 181, 0.3);
+}
+
+.theme-super .chat-messages::-webkit-scrollbar-thumb:hover {
+  background: rgba(63, 81, 181, 0.5);
+}
+
+.theme-super .avatar-placeholder {
+  background: linear-gradient(135deg, #3f51b5, #2196f3);
+}
+
+.theme-super .user-message .message-bubble {
+  background: linear-gradient(135deg, #3f51b5, #2196f3);
+  color: white;
+  border-bottom-right-radius: 8px;
+}
+
+.theme-super .ai-message .message-bubble {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(63, 81, 181, 0.2);
+}
+
+.theme-super .chat-input-container {
+  background: linear-gradient(135deg, #e3f2fd 0%, #e8eaf6 50%, #e0e7ff 100%);
+  border-top: 1px solid rgba(63, 81, 181, 0.2);
+  box-shadow: 0 -4px 20px rgba(63, 81, 181, 0.1);
+}
+
+.theme-super .input-wrapper {
+  border: 2px solid rgba(63, 81, 181, 0.3);
+  box-shadow: 0 4px 16px rgba(63, 81, 181, 0.2);
+}
+
+.theme-super .input-wrapper:focus-within {
+  border-color: #3f51b5;
+  box-shadow: 0 4px 20px rgba(63, 81, 181, 0.3);
+}
+
+.theme-super .send-button {
+  background: linear-gradient(135deg, #3f51b5, #2196f3);
+  box-shadow: 0 4px 12px rgba(63, 81, 181, 0.3);
+}
+
+.theme-super .send-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2196f3, #1976d2);
+  box-shadow: 0 6px 16px rgba(63, 81, 181, 0.4);
+}
+
+.theme-super .typing-indicator {
+  color: #3f51b5;
+}
+
+.theme-super .empty-text {
+  color: rgba(63, 81, 181, 0.8);
 }
 
 .chat-messages {
   flex: 1;
   overflow-y: auto;
   padding: 24px;
-  padding-bottom: 80px;
+  padding-bottom: 100px;
   display: flex;
   flex-direction: column;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 80px;
+  bottom: 100px;
 }
 
 /* 滚动条样式 */
@@ -166,15 +294,6 @@ onMounted(() => {
 .chat-messages::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 3px;
-}
-
-.chat-messages::-webkit-scrollbar-thumb {
-  background: rgba(255, 105, 180, 0.3);
-  border-radius: 3px;
-}
-
-.chat-messages::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 105, 180, 0.5);
 }
 
 .message-wrapper {
@@ -226,7 +345,6 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #ff69b4, #ff1493);
   color: white;
   font-weight: bold;
   font-size: 14px;
@@ -240,21 +358,9 @@ onMounted(() => {
   min-width: 120px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
-}
-
-.user-message .message-bubble {
-  background: linear-gradient(135deg, #ff69b4, #ff1493);
-  color: white;
-  border-bottom-right-radius: 8px;
-  text-align: left;
-}
-
-.ai-message .message-bubble {
-  background: rgba(255, 255, 255, 0.9);
   color: #333;
   border-bottom-left-radius: 8px;
   text-align: left;
-  border: 1px solid rgba(255, 182, 193, 0.2);
 }
 
 .message-content {
@@ -283,18 +389,15 @@ onMounted(() => {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(135deg, #ffeef8 0%, #f8e8f0 50%, #f0d8e8 100%);
   backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255, 182, 193, 0.2);
   z-index: 100;
-  height: 80px;
-  box-shadow: 0 -4px 20px rgba(255, 182, 193, 0.1);
+  height: 100px;
+  padding-bottom: 8px;
 }
 
 .chat-input {
   display: flex;
-  padding: 16px 20px;
-  height: 100%;
+  padding: 16px 20px 8px 20px;
   box-sizing: border-box;
   align-items: center;
 }
@@ -306,14 +409,7 @@ onMounted(() => {
   background: white;
   border-radius: 25px;
   padding: 4px 4px 4px 20px;
-  box-shadow: 0 4px 16px rgba(255, 182, 193, 0.2);
-  border: 2px solid rgba(255, 182, 193, 0.3);
   transition: all 0.3s ease;
-}
-
-.input-wrapper:focus-within {
-  border-color: #ff69b4;
-  box-shadow: 0 4px 20px rgba(255, 105, 180, 0.3);
 }
 
 .input-box {
@@ -341,7 +437,6 @@ onMounted(() => {
 
 .send-button {
   margin-left: 12px;
-  background: linear-gradient(135deg, #ff69b4, #ff1493);
   color: white;
   border: none;
   border-radius: 50%;
@@ -352,13 +447,6 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.3);
-}
-
-.send-button:hover:not(:disabled) {
-  background: linear-gradient(135deg, #ff1493, #dc143c);
-  transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(255, 105, 180, 0.4);
 }
 
 .send-button:disabled {
@@ -371,7 +459,6 @@ onMounted(() => {
   display: inline-block;
   animation: blink 0.7s infinite;
   margin-left: 2px;
-  color: #ff69b4;
 }
 
 @keyframes blink {
@@ -410,7 +497,6 @@ onMounted(() => {
 
 .empty-text {
   font-size: 18px;
-  color: rgba(255, 105, 180, 0.8);
   font-weight: 500;
   text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
 }
@@ -454,12 +540,13 @@ onMounted(() => {
   }
   
   .chat-input-container {
-    height: 72px;
+    height: 88px;
   }
   
   .chat-messages {
-    bottom: 72px;
+    bottom: 88px;
     padding: 16px;
+    padding-bottom: 88px;
   }
   
   .empty-icon {
@@ -468,6 +555,12 @@ onMounted(() => {
   
   .empty-text {
     font-size: 16px;
+  }
+  
+  .disclaimer-text {
+    font-size: 11px;
+    padding: 0 12px;
+    margin-bottom: 6px;
   }
 }
 
@@ -510,5 +603,22 @@ onMounted(() => {
 
 .user-message + .user-message .message-bubble {
   border-top-right-radius: 12px;
+}
+
+.disclaimer-text {
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.6;
+  padding: 0 20px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.theme-love .disclaimer-text {
+  color: rgba(255, 105, 180, 0.8);
+}
+
+.theme-super .disclaimer-text {
+  color: rgba(63, 81, 181, 0.8);
 }
 </style> 

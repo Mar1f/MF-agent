@@ -2,7 +2,7 @@
   <div class="love-master-container">
     <div class="header">
       <div class="back-button" @click="goBack">返回</div>
-      <h1 class="title">AI恋爱大师</h1>
+      <h1 class="title">AI 恋爱大师</h1>
       <div class="chat-id">会话ID: {{ chatId }}</div>
     </div>
 

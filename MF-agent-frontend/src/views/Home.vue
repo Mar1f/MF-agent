@@ -136,7 +136,7 @@
         <div class="wave wave3"></div>
       </div>
       <div class="footer-content">
-        <p>© 2024 AI 智能助手平台 - 让AI服务更懂你</p>
+        <p>© 2025 AI 智能助手平台 - 让AI服务更懂你</p>
       </div>
     </footer>
   </div>
