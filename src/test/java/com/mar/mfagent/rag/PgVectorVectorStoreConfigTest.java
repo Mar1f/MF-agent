@@ -1,5 +1,7 @@
 package com.mar.mfagent.rag;
 
+//注释掉PgVector测试类 - 部署时不使用PostgreSQL数据库
+/*
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -32,3 +34,4 @@ public class PgVectorVectorStoreConfigTest {
         Assertions.assertNotNull(results);
     }
 }
+*/

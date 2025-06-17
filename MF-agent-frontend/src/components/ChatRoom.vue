@@ -139,8 +139,8 @@ onMounted(() => {
 .chat-container {
   display: flex;
   flex-direction: column;
-  height: 70vh;
-  min-height: 600px;
+  height: 100%;
+  width: 100%;
   border-radius: 16px;
   overflow: hidden;
   position: relative;

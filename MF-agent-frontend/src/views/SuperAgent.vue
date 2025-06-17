@@ -175,7 +175,10 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  height: 100vh;
+  width: 100%;
   background-color: #f9fbff;
+  position: relative;
 }
 
 .header {
@@ -189,6 +192,7 @@ onBeforeUnmount(() => {
   position: sticky;
   top: 0;
   z-index: 10;
+  flex-shrink: 0;
 }
 
 .back-button {
@@ -226,6 +230,8 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   flex: 1;
+  height: calc(100vh - 72px);
+  overflow: hidden;
 }
 
 .chat-area {
@@ -233,8 +239,8 @@ onBeforeUnmount(() => {
   padding: 16px;
   overflow: hidden;
   position: relative;
-  /* 设置最小高度确保内容显示正常 */
-  min-height: calc(100vh - 56px); /* 移除页脚高度，只保留头部高度 */
+  width: 100%;
+  height: 100%;
 }
 
 /* 响应式样式 */
@@ -249,7 +255,10 @@ onBeforeUnmount(() => {
 
   .chat-area {
     padding: 12px;
-    min-height: calc(100vh - 48px); /* 调整计算值，移除页脚高度 */
+  }
+
+  .content-wrapper {
+    height: calc(100vh - 60px);
   }
 }
 
@@ -268,7 +277,10 @@ onBeforeUnmount(() => {
 
   .chat-area {
     padding: 8px;
-    min-height: calc(100vh - 42px); /* 再次调整计算值，移除页脚高度 */
+  }
+
+  .content-wrapper {
+    height: calc(100vh - 52px);
   }
 }
 </style> 
